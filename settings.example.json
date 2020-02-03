@@ -1,0 +1,33 @@
+{
+  "brokers": [
+    {
+      "host": "mqtt.cloud.yandex.net:8883",
+      "client_name": "axc-f-2152",
+      "connect_options": {
+        "ssl_options": {
+          "trust_store": "/opt/plcnext/projects/mqtt-client-dataserver/credentials/rootCA.crt",
+          "key_store": "/opt/plcnext/projects/mqtt-client-dataserver/credentials/axc-f-2152-cert.pem",
+          "private_key": "/opt/plcnext/projects/mqtt-client-dataserver/credentials/axc-f-2152-key.pem"
+        }
+      },
+      "publish_data": [
+        {
+          "topics": [
+            "devices/axc-f-2152/events"
+          ]
+        }
+      ],
+      "subscribe_data": [
+        {
+          "topic": "devices/axc-f-2152/commands"
+        }
+      ]
+    }
+  ],
+  "data_server": {
+    "port": "3999"
+  },
+  "web_server": {
+    "port": "4000"
+  }
+}

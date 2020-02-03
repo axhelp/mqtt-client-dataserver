@@ -1,0 +1,30 @@
+{
+  "name": "mqtt-client-dataserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mqtt-client-dataserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server",
+    "server": "node mqtt-client-dataserver.js",
+    "server-dev": "nodemon mqtt-client-dataserver.js",
+    "frontend-dev": "cd ../frontend && npm start",
+    "start-dev": "env NODE_ENV=development concurrently \"npm run server-dev\" \"npm run frontend-dev\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "http": "0.0.0",
+    "immutability-helper": "^3.0.1",
+    "mqtt": "^3.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
