@@ -75,7 +75,7 @@ connection during the installation procedure.
 
 ### Installation procedure
 #### File copy
-Copy `plcnext-nodejs-installer.sh` file into PLC file system.
+Copy `mqtt-client-dataserver-installer.sh` file into PLC file system.
 Default IP address is `192.168.1.10`, default password is printed on PLC.
 
 ##### Linux/Mac OS:
@@ -101,7 +101,7 @@ chmod +x mqtt-client-dataserver-installer.sh
 ```
 
 #### Configuration
-After the installation, application is launched by p2 process manager and listen as Web server on port `4000`, or another 
+After the installation, application is launched by pm2 process manager and listen as Web server on port `4000`, or another 
 if specified in `/opt/plcnext/projects/mqtt-client-dataserver/settings.json` configuration file.
 
 После установки приложение запускается менеджером процессов pm2 и открывает Web сервер для конфигурации на порту `4000`, 
