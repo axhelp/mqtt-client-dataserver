@@ -27,7 +27,7 @@ jobs:
     - run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add frontend/build/*
+        git add -f frontend/build/*
         git commit -m "Frontend build" -a
     - uses: ad-m/github-push-action@master
       with:
