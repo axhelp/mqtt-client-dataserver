@@ -57,7 +57,7 @@ npm install
 cd ../frontend
 npm install
 
-npm npm run start-dev
+npm run start-dev
 ```
 
 
@@ -120,5 +120,5 @@ npm install
 cd ../frontend
 npm install
 
-npm npm run start-dev
+npm run start-dev
 ```
