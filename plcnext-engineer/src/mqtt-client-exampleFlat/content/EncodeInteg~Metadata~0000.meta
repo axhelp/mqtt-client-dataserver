@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Metadata>
+   <ContentType>Function</ContentType>
+   <Kind>Function</Kind>
+   <ReturnType>STRING</ReturnType>
+   <Id>7b2686cc-2496-4cb6-90ff-efe15d8f0750</Id>
+   <ItemGroup>
+      <VariableWorksheet>
+         <Id>e6cb1982-2607-4c88-b565-2aafd1dfd979</Id>
+      </VariableWorksheet>
+      <CodeWorksheet Include="Code.st">
+         <Id>40e40954-c45d-4f1f-9006-8c25e0250869</Id>
+         <Extension>.st</Extension>
+         <Type>.st</Type>
+         <ParentIndex>0</ParentIndex>
+      </CodeWorksheet>
+   </ItemGroup>
+</Metadata>

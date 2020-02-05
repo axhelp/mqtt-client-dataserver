@@ -48,6 +48,24 @@ chmod +x mqtt-client-dataserver-installer.sh
 `192.168.1.10`)
 ![Web configuration](images/config_01.png)
 
+
+### Отправка сообщений
+Для отправки сообщений из рантайма IEC 61131-3 необходимо функциональным блоком `TCP_SOCKET` установить TCP соединение с `Data Server` и отправлять функциональным блоком `TCP_SEND` сообщения в формате JSON, например:
+```json
+{
+     "topic": "/rtc/seconds",
+     "value": 42
+}   
+```
+
+![Overview](images/overview.svg)
+
+[Пример](plcnext-engineer/src) программы для рантайма IEC 61131-3 состоит из:
+-  Функционального блока [TcpClient](plcnext-engineer/src/mqtt-client-exampleFlat/content/TcpClient.pou~Code~0000.st) для соединения с `Data Server` и отправки сообщений
+-  Функционального блока [EncodeIntegerValue] ](/plcnext-engineer/src/mqtt-client-exampleFlat/content/EncodeIntegerVa~Code~0000.st) для формирования сообщения
+-  Программы [Main](plcnext-engineer/src/mqtt-client-exampleFlat/content/Main.pou~Code~0000.st), соединяющей блоки друг с другом
+
+
 #### Разработка 
 Установка зависисмостей и запуск в режиме разработки:
 ```bash
@@ -110,6 +128,24 @@ if specified in `/opt/plcnext/projects/mqtt-client-dataserver/settings.json` con
 Web interface is accessible via link [http://192.168.1.10:4000](http://192.168.1.10:4000) (if PLC IP address is
 `192.168.1.10`)
 ![Web configuration](images/config_01.png)
+
+
+### Sending messages
+To send messages from IEC 61131-3 runtime, a TCP connecton to local `Data Server` should be established with function block `TCP_SOCKET`. After that string messages in JSON format can be transmitted with function block `TCP_SEND`. For example:
+```json
+{
+     "topic": "/rtc/seconds",
+     "value": 42
+}   
+```
+
+![Overview](images/overview.svg)
+
+IEC 61131-3 program [example](plcnext-engineer/src) includes:
+-  Function block [TcpClient](plcnext-engineer/src/mqtt-client-exampleFlat/content/TcpClient.pou~Code~0000.st) to connect with `Data Server` and send messages
+-  Function block [EncodeIntegerValue](/plcnext-engineer/src/mqtt-client-exampleFlat/content/EncodeIntegerVa~Code~0000.st) to wrap values into string in JSON format
+-  Program [Main](plcnext-engineer/src/mqtt-client-exampleFlat/content/Main.pou~Code~0000.st) to connect function blocks between each other
+
 
 #### Development 
 Required packages installation and running in development mode:

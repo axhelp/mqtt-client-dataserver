@@ -1,0 +1,22 @@
+{ CustomGroupDefinition('2f891d2b-c30d-4c2d-8014-340b7678fed5', 'Instances') }
+{ CustomGroupDefinition('280e10a7-b539-4735-90e3-6aa48a266537', 'Global') }
+{ CustomGroupDefinition('fb84caa8-36a3-47d9-8bf0-95ff0e8a7b24', 'Default') }
+{ CustomGroupDefinition('15fa61b9-f586-4fb4-8051-24525833fda3', 'Local') }
+
+VAR
+    TcpClientInstance : TcpClient { CustomGroupReference('2f891d2b-c30d-4c2d-8014-340b7678fed5') } {Id('65dca4a4-9fe9-4e4c-a04c-616dc55e0b93')};
+END_VAR
+
+VAR_EXTERNAL
+    RTC : RTC_TYPE { CustomGroupReference('280e10a7-b539-4735-90e3-6aa48a266537') } {Id('2fa416df-0a33-43d8-946f-a8aa34f6f0dc')};
+END_VAR
+
+VAR
+    strEventsMessage : STRING { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('3ce71cd5-7e97-4da9-8e25-812e33aecd33')};
+    xActivateTcpClient : BOOL := TRUE { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('320afaaa-43c6-433e-b3e5-6eaf2578971f')};
+    xSendMessage : BOOL { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('d117972c-d6f1-409c-b1bd-06477e791d64')};
+    xTcpClientError : BOOL { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('01b23f86-6a6c-4d1f-b9a5-e7e1bc8cbf60')};
+    wTcpServerStatus : WORD { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('d8ae777b-c558-4d6b-837b-cd32bc511191')};
+    strPlcIpAddress : STRING := STRING#'192.168.1.10' { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('72167f3e-8825-4330-87c7-3b5fc091efec')};
+    iSecondsRemembered : USINT { CustomGroupReference('15fa61b9-f586-4fb4-8051-24525833fda3') } {Id('4c039612-b1f1-4197-afdc-e5e1400a6dae')};
+END_VAR

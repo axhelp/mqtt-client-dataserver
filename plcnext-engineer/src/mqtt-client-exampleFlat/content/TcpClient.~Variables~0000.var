@@ -1,0 +1,32 @@
+{ CustomGroupDefinition('612f67f9-fdf4-4cc9-9e59-b6e2122e9d71', 'Instances') }
+{ CustomGroupDefinition('cd48422d-fcee-4bc1-82c9-66d4cd0f40b3', 'Outputs') }
+{ CustomGroupDefinition('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5', 'Inputs') }
+{ CustomGroupDefinition('61eb99e3-a92a-4f6b-94a4-6dfe78f713cd', 'Local') }
+{ CustomGroupDefinition('fb84caa8-36a3-47d9-8bf0-95ff0e8a7b24', 'Default') }
+
+VAR
+    TCP_SOCKET_INSTANCE : TCP_SOCKET { CustomGroupReference('612f67f9-fdf4-4cc9-9e59-b6e2122e9d71') } {Id('af49a90c-bf2f-4ee9-a1b1-88a775b86ec5')};
+    TCP_SEND_INSTANCE : TCP_SEND { CustomGroupReference('612f67f9-fdf4-4cc9-9e59-b6e2122e9d71') } {Id('dca0ecea-286f-4866-8795-85f44344a530')};
+END_VAR
+
+VAR_OUTPUT
+    xError : BOOL { CustomGroupReference('cd48422d-fcee-4bc1-82c9-66d4cd0f40b3') } {Id('bda03604-dc17-4c18-bb69-ddbf63d26f90')};
+    wStatus : WORD { CustomGroupReference('cd48422d-fcee-4bc1-82c9-66d4cd0f40b3') } {Id('f7318e13-0550-4ff7-a422-949ee262c529')};
+    xErrorSend : BOOL { CustomGroupReference('cd48422d-fcee-4bc1-82c9-66d4cd0f40b3') } {Id('aa78d627-b9dd-49aa-a0c6-c7bf838f9e4f')};
+    xDoneSend : BOOL { CustomGroupReference('cd48422d-fcee-4bc1-82c9-66d4cd0f40b3') } {Id('17ab653d-f4d8-48b9-a1e7-689780dbc7b7')};
+END_VAR
+
+VAR_INPUT
+    xActivate : BOOL { CustomGroupReference('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5') } {Id('28ba1e99-8dfc-48ec-ae6a-e4e40ab2791c')};
+    strIpAddress : STRING { CustomGroupReference('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5') } {Id('c296ef59-6d45-45c1-8def-a6866236f7cc')};
+    uiPort : UINT { CustomGroupReference('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5') } {Id('43055575-d878-4c1b-94e2-4b9744f5cad8')};
+    xSend : BOOL { CustomGroupReference('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5') } {Id('89793842-8781-46cc-97eb-255ed07ccf7e')};
+    strMessage : STRING { CustomGroupReference('68ddbe8f-ddf1-4516-b1fd-38a01309ffe5') } {Id('6381f5ad-eda2-4988-ae3e-7eb0b370aace')};
+END_VAR
+
+VAR
+    dwHandle : DWORD { CustomGroupReference('61eb99e3-a92a-4f6b-94a4-6dfe78f713cd') } {Id('461f7e51-1f30-4d5d-8117-99356c252579')};
+    arrSendData : ARR_B_0_1023 { CustomGroupReference('61eb99e3-a92a-4f6b-94a4-6dfe78f713cd') } {Id('6bf275d9-0207-4c29-bbb2-b4f79c3d281a')};
+    xBufResult : BOOL { CustomGroupReference('61eb99e3-a92a-4f6b-94a4-6dfe78f713cd') } {Id('4ed22255-d6a5-47dc-8863-dd72ad01c309')};
+    wStatusSend : WORD { CustomGroupReference('61eb99e3-a92a-4f6b-94a4-6dfe78f713cd') } {Id('48db479b-fca3-4bc8-b2b6-6d4e52baf5c7')};
+END_VAR

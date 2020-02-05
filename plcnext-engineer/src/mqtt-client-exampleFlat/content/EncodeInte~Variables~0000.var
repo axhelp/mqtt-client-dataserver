@@ -1,0 +1,6 @@
+{ CustomGroupDefinition('fb84caa8-36a3-47d9-8bf0-95ff0e8a7b24', 'Inputs') }
+
+VAR_INPUT
+    iValue : INT { CustomGroupReference('fb84caa8-36a3-47d9-8bf0-95ff0e8a7b24') } {Id('acdbddae-a692-4e5d-9dbe-b74ee2dc18a1')};
+    strTopic : STRING { CustomGroupReference('fb84caa8-36a3-47d9-8bf0-95ff0e8a7b24') } {Id('92d3149b-5c70-421d-84b0-dd18c377d441')};
+END_VAR

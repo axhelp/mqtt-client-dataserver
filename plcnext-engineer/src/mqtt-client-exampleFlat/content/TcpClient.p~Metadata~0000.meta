@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Metadata>
+   <ContentType>FunctionBlock</ContentType>
+   <Kind>FunctionBlock</Kind>
+   <Id>e4360558-71e5-4353-bde7-3e563c5202cf</Id>
+   <ItemGroup>
+      <VariableWorksheet>
+         <Id>371745f9-d523-4ff0-b5cf-48af155219e6</Id>
+      </VariableWorksheet>
+      <CodeWorksheet Include="Code.st">
+         <Id>5f302d19-3ebf-48d2-9616-d0a0dcfedd8e</Id>
+         <Extension>.st</Extension>
+         <Type>.st</Type>
+         <ParentIndex>0</ParentIndex>
+      </CodeWorksheet>
+   </ItemGroup>
+</Metadata>
