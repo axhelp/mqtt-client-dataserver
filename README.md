@@ -62,7 +62,7 @@ chmod +x mqtt-client-dataserver-installer.sh
 
 [Пример](plcnext-engineer/src) программы для рантайма IEC 61131-3 состоит из:
 -  Функционального блока [TcpClient](plcnext-engineer/src/mqtt-client-exampleFlat/content/TcpClient.pou~Code~0000.st) для соединения с `Data Server` и отправки сообщений
--  Функционального блока [EncodeIntegerValue] ](/plcnext-engineer/src/mqtt-client-exampleFlat/content/EncodeIntegerVa~Code~0000.st) для формирования сообщения
+-  Функционального блока [EncodeIntegerValue](/plcnext-engineer/src/mqtt-client-exampleFlat/content/EncodeIntegerVa~Code~0000.st) для формирования сообщения
 -  Программы [Main](plcnext-engineer/src/mqtt-client-exampleFlat/content/Main.pou~Code~0000.st), соединяющей блоки друг с другом
 
 
