@@ -31,5 +31,6 @@ jobs:
         git commit -m "Frontend build" -a
     - uses: ad-m/github-push-action@master
       with:
+        force: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: 'deploy'
