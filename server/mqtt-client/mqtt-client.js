@@ -1,9 +1,9 @@
 const fs = require('fs');
 const mqtt = require('mqtt');
-const {logMessageWithAppStatusUpdate, LogLevels} = require('../logger/logger');
+const {logMessageWithAppStatusUpdate, logMessage, LogLevels} = require('../logger/logger');
 
 
-const createMqttClientInstance = (appConfig, appStatus) => {
+const createMqttClientInstance = (appConfig, appStatus, onMessageFromBroker) => {
     const componentName = `mqttClient`;
 
     const [mqttHost, mqttPort] = appConfig.brokers[0].host.split(':');
@@ -58,6 +58,22 @@ const createMqttClientInstance = (appConfig, appStatus) => {
                 message: `Mqtt client connected to server ${options.host}:${options.port}`,
             }
         );
+        mqttClient.subscribe(appConfig.brokers[0].subscribe_data[0].topic, (err) => {
+            if (!err) {
+                logMessage({
+                    logLevel: LogLevels.OK,
+                    componentName,
+                    message: `Mqtt client subscribed to topic ${appConfig.brokers[0].subscribe_data[0].topic}`,
+                })
+            }
+            else {
+                logMessage({
+                    logLevel: LogLevels.OK,
+                    componentName,
+                    message: `Error subscribe to topic ${appConfig.brokers[0].subscribe_data[0].topic}: ${err.message}`,
+                })
+            }
+        })
     });
 
     mqttClient.on('reconnect', () => {
@@ -94,6 +110,10 @@ const createMqttClientInstance = (appConfig, appStatus) => {
             }
         );
         mqttClient.reconnect();
+    });
+
+    mqttClient.on('message', (topic, msg) => {
+        onMessageFromBroker(msg.toString());
     });
 
     return mqttClient

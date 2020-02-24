@@ -48,10 +48,23 @@ const onReceiveConfigUpdate = (configUpdate) => {
 
 const appConfig = loadConfig(SETTINGS_FILE_PATH);
 
+const socketContainer = {};
+const onMessageFromBroker = (msg) => {
+    try {
+        socketContainer.socket.write(msg)
+    } catch (e) {
+        logMessage({
+            logLevel: LogLevels.ERROR,
+            componentName,
+            error: e
+        });
+    }
+};
+
 try {
     webServer = createWeServerInstance(appConfig, appStatus, onReceiveConfigUpdate);
-    dataServer = createDataServerInstance(appConfig, appStatus, onReceivePlcMessage);
-    mqttClient = createMqttClientInstance(appConfig, appStatus);
+    dataServer = createDataServerInstance(appConfig, appStatus, onReceivePlcMessage, socketContainer);
+    mqttClient = createMqttClientInstance(appConfig, appStatus, onMessageFromBroker);
 
     logMessage({
         logLevel: LogLevels.WARN,

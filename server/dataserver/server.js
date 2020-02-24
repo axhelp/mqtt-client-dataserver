@@ -2,7 +2,7 @@ const net = require('net');
 const {logMessage, logMessageWithAppStatusUpdate, LogLevels} = require('../logger/logger');
 
 
-const createDataServerInstance = (appConfig, appStatus, onReceivePlcMessage) => {
+const createDataServerInstance = (appConfig, appStatus, onReceivePlcMessage, socketContainer) => {
     const componentName = `dataServer`;
 
     const dataServer = net.createServer();
@@ -87,6 +87,8 @@ const createDataServerInstance = (appConfig, appStatus, onReceivePlcMessage) => 
                 }
             );
         });
+
+        socketContainer.socket = socket;
     });
 
     return dataServer
