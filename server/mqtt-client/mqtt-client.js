@@ -96,7 +96,6 @@ const createMqttClientInstance = (appConfig, appStatus, onMessageFromBroker) => 
                 message: `Mqtt client closed`
             }
         );
-        mqttClient.reconnect();
     });
 
     mqttClient.on('error', (e) => {
@@ -109,7 +108,6 @@ const createMqttClientInstance = (appConfig, appStatus, onMessageFromBroker) => 
                 error: e
             }
         );
-        mqttClient.reconnect();
     });
 
     mqttClient.on('message', (topic, msg) => {
