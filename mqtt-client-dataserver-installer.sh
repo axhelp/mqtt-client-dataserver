@@ -24,8 +24,8 @@ pm2 startup &> /dev/null
 
 # Getting project files
 echo "Retrieving .js files please wait....."
+cd /opt/plcnext/projects/
 git clone -b deploy --single-branch https://github.com/axhelp/mqtt-client-dataserver.git
-mkdir /opt/plcnext/projects/mqtt-client-dataserver
 cd mqtt-client-dataserver/server
 npm install
 
