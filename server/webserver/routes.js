@@ -9,8 +9,8 @@ const {getDeviceHostName} = require('../helpers/utils');
 const {logMessage, logMessageWithAppStatusUpdate, LogLevels} = require('../logger/logger');
 const {validateConfig} = require('./validation');
 
-
-const CLIENT_BUILD_PATH = path.join(__dirname, '../..', '/frontend/build');
+const dirName = path.join(path.resolve(), '/webserver');
+const CLIENT_BUILD_PATH = path.join(dirName, '../..', '/frontend/build');
 
 const createRouterInstance = (appConfig, appStatus, onReceiveConfigUpdate) => {
     const componentName = `router`;
@@ -53,7 +53,7 @@ const createRouterInstance = (appConfig, appStatus, onReceiveConfigUpdate) => {
         }
 
         const file = req.files.file;
-        const filePath = path.join(__dirname, '../../credentials/', file.name);
+        const filePath = path.join(dirName, '../../credentials/', file.name);
 
         fs.mkdirSync(path.dirname(filePath), {recursive: true});
         file.mv(filePath, err => {
