@@ -1,13 +1,10 @@
 name: Build Frontend
 
 on:
-  push:
-    branches:
-      - master
+  push
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,16 +18,36 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        cd frontend
+        cd server
         npm install
         npm run build
-    - run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add -f frontend/build/*
-        git commit -m "Frontend build" -a
-    - uses: ad-m/github-push-action@master
-      with:
-        force: true
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: 'deploy'
+        cd ../frontend
+        npm install
+        npm run build
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: build
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add build-mqtt-client-dataserver.js
+          git add -f frontend/build/*
+          git commit -m "Frontend build" -a
+      - uses: ad-m/github-push-action@master
+        with:
+          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'deploy'
