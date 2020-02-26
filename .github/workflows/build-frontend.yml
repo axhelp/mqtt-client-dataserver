@@ -36,9 +36,6 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
