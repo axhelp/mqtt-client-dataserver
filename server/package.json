@@ -28,6 +28,7 @@
     "concurrently": "^5.1.0",
     "nodemon": "^2.0.2",
     "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
   }
 }
