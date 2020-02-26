@@ -1,5 +1,4 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 module.exports = {
     target: "node",
     entry: {
@@ -9,5 +8,10 @@ module.exports = {
         path: path.resolve(__dirname),
         filename: "./bundle-mqtt-client-dataserver.js"
     },
-    externals: [nodeExternals()],
+    module: {
+        rules: [
+            { test: /\.js$/, use: 'shebang-loader' }
+        ],
+    },
+    externals: [],
 };
