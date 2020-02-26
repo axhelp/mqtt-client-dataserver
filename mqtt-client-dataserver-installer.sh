@@ -30,6 +30,6 @@ cd mqtt-client-dataserver/server
 npm install
 
 # Installing project at startup
-pm2 start node /opt/plcnext/projects/mqtt-client-dataserver/server/mqtt-client-dataserver.js
+pm2 start node /opt/plcnext/projects/mqtt-client-dataserver/server/bundle-mqtt-client-dataserver.js
 pm2 save
 pm2 startup

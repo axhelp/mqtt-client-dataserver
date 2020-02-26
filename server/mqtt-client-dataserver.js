@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const {createWeServerInstance} = require('./webserver/server');
 const {createDataServerInstance} = require('./dataserver/server');
 const {createMqttClientInstance} = require('./mqtt-client/mqtt-client');
@@ -9,7 +10,8 @@ const {logMessage, LogLevels} = require('./logger/logger');
 
 let webServer, dataServer, mqttClient;
 let appStatus = InitialAppStatus;
-const SETTINGS_FILE_PATH = path.join(__dirname, '../', `settings.json`);
+const dirName = path.resolve();
+const SETTINGS_FILE_PATH = path.join(dirName, '../', `settings.json`);
 const componentName = `server`;
 
 const onReceivePlcMessage = (message) => {
