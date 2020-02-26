@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Build with Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
@@ -35,7 +35,10 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Deploy
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
