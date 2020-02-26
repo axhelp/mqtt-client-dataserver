@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Deploy
-      - run: |
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -f server/bundle-mqtt-client-dataserver.js
