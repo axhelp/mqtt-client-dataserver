@@ -9,7 +9,7 @@ const Menu = (props) => {
             <div className='cf pxc-fcol-flt'>
                 <div className='pxc-p-boxed'>
                     <div className='pxc-filterpane'>
-                        <a href='#'>
+                        <a href='/'>
                             <p className='pxc-filtertitle centered' id='id_div_devdesignation'>
                                 <span>{deviceName}</span>
                                 <br/>
