@@ -13,5 +13,8 @@ module.exports = {
             { test: /\.js$/, use: 'shebang-loader' }
         ],
     },
+    node: {
+        __dirname: true
+    },
     externals: [],
 };
