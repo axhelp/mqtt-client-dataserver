@@ -8,10 +8,7 @@ import {getDeviceHostAddress} from '../helpers/utils';
 import {useInterval} from '../hooks/use-interval';
 
 
-const appConfigUrl = `${getDeviceHostAddress()}/config`;
-const appStatusUrl = `${getDeviceHostAddress()}/status`;
-
-const Configuration = () => {
+const Configuration = ({appConfigUrl, appStatusUrl}) => {
     const {value: brokerAddress, bind: bindBrokerAddress, setValue: setBrokerAddress} = useTextInput('');
     const {value: rootCaFle, bind: bindRootCaFile, setValue: setRootCaFile} = useTextInput('');
     const {value: certFile, bind: bindCertFile, setValue: setCertFile} = useTextInput('');
@@ -24,7 +21,7 @@ const Configuration = () => {
     const [appStatus, setAppStatus] = useState({});
 
     useEffect(() => {
-        const fetchConfig = async () => {
+        const fetchConfig = async (appConfigUrl) => {
             const res = await fetch(
                 appConfigUrl
             );
@@ -45,8 +42,9 @@ const Configuration = () => {
                 console.log(e)
             }
         };
-        fetchConfig();
-    }, );
+        fetchConfig(appConfigUrl);
+    }, [appConfigUrl, setBrokerAddress, setRootCaFile, setCertFile, setClientId,
+        setDataServerPort, setKeyFile, setPublishTopic, setSubscribeTopic, setWebServerPort]);
 
 
     const fetchStatus = async () => {
