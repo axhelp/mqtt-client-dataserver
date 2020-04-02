@@ -46,7 +46,7 @@ const Configuration = () => {
             }
         };
         fetchConfig();
-    }, []);
+    }, );
 
 
     const fetchStatus = async () => {

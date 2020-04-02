@@ -18,7 +18,7 @@ const FileInput = (props) => {
                     return res.json()
                 })
                 .then((data) => {
-                    const {fileName, filePath} = data;
+                    const {filePath} = data;
                     setTextInput(filePath)
                 })
         }
