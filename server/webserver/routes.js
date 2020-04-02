@@ -10,7 +10,7 @@ const {logMessage, logMessageWithAppStatusUpdate, LogLevels} = require('../logge
 const {validateConfig} = require('./validation');
 
 const dirName = path.join(path.resolve(), '/webserver');
-const CLIENT_BUILD_PATH = path.join(dirName, '../..', '/frontend/build');
+const CLIENT_BUILD_PATH = path.join(dirName, '../', '../', 'frontend/build');
 
 const createRouterInstance = (appConfig, appStatus, onReceiveConfigUpdate) => {
     const componentName = `router`;

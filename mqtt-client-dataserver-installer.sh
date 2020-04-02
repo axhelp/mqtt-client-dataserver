@@ -28,6 +28,7 @@ cd /opt/plcnext/projects/
 git clone -b deploy --single-branch https://github.com/axhelp/mqtt-client-dataserver.git
 
 # Installing project at startup
-pm2 start node /opt/plcnext/projects/mqtt-client-dataserver/server/bundle-mqtt-client-dataserver.js
+cd /opt/plcnext/projects/mqtt-client-dataserver/server/
+pm2 start node bundle-mqtt-client-dataserver.js
 pm2 save
 pm2 startup
