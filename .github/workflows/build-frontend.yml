@@ -36,25 +36,58 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build and Deploy
+      -
+        name: Build and Update `deploy` brunch
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
           cd server
-          npm install
+          npm ci
           npm run build
           cd ../frontend
-          npm install
+          npm ci
           npm run build
+          cp -R build/ ../server/public/
           cd ../
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -f server/bundle-mqtt-client-dataserver.js
-          git add -f frontend/build/*
+          git add -f server/public/*
           git commit -m "Frontend build" -a
       - uses: ad-m/github-push-action@master
         with:
           force: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'deploy'
+      -
+        name: Prepare to Docker login
+        if: success()
+        id: prepare
+        run: |
+          echo ::set-output name=docker_image::axhelp/mqtt-client-dataserver
+          echo ::set-output name=hash::${GITHUB_SHA}
+      -
+        name: Docker Login
+        if: success()
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+      -
+        name: Set up Docker Buildx
+        if: success()
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      -
+        name: Run Buildx with push
+        if: success()
+        run: |
+          docker buildx build \
+            --output type=image,name=axhelp/mqtt-client-dataserver,push=true \
+            --platform linux/arm/v7 \
+            --tag axhelp/mqtt-client-dataserver:latest \
+            --file ./Dockerfile . \
