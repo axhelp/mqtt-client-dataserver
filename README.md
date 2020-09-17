@@ -67,6 +67,8 @@ balena-engine run -d \
     --restart=always \
     -p 3999:3999 \
     -p 4000:4000 \
+    -v /opt/plcnext/projects/mqtt-client-dataserver/credentials:/usr/credentials \
+    -v /opt/plcnext/projects/mqtt-client-dataserver/settings.json:/usr/settings.json \
     axhelp/mqtt-client-dataserver:latest
 ```
 
@@ -207,6 +209,8 @@ balena-engine run -d \
     --restart=always \
     -p 3999:3999 \
     -p 4000:4000 \
+    -v /opt/plcnext/projects/mqtt-client-dataserver/credentials:/usr/credentials \
+    -v /opt/plcnext/projects/mqtt-client-dataserver/settings.json:/usr/settings.json \
     axhelp/mqtt-client-dataserver:latest
 ```
 
