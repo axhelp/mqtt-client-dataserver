@@ -1,38 +1,50 @@
 const fs = require('fs');
 const mqtt = require('mqtt');
-const {logMessageWithAppStatusUpdate, logMessage, LogLevels} = require('../logger/logger');
+const { logMessageWithAppStatusUpdate, logMessage, LogLevels } = require('../logger/logger');
 
+const AuthTypes = {
+    Pass: `pass`,
+    Cert: `cert`
+}
 
 const createMqttClientInstance = (appConfig, appStatus, onMessageFromBroker) => {
     const componentName = `mqttClient`;
 
     const [mqttHost, mqttPort] = appConfig.brokers[0].host.split(':');
+    const authType = appConfig.brokers[0].connect_options.auth_type || AuthTypes.Cert
 
-    let key, cert, trustedCaList;
-    try {
-        key = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.private_key);
-        cert = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.key_store);
-        trustedCaList = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.trust_store);
-    } catch (e) {
-        logMessageWithAppStatusUpdate(
-            appStatus,
-            {
-                logLevel: LogLevels.ERROR,
-                componentName,
-                error: e
-            }
-        );
-        return
+    let key, cert, trustedCaList, username, password;
+    if (authType === AuthTypes.Cert) {
+        try {
+            key = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.private_key);
+            cert = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.key_store);
+            trustedCaList = fs.readFileSync(appConfig.brokers[0].connect_options.ssl_options.trust_store);
+        } catch (e) {
+            logMessageWithAppStatusUpdate(
+                appStatus,
+                {
+                    logLevel: LogLevels.ERROR,
+                    componentName,
+                    error: e
+                }
+            );
+            return
+        }
+    } else {
+        username = appConfig.brokers[0].connect_options.username;
+        password = appConfig.brokers[0].connect_options.password;
     }
 
     const options = {
         port: mqttPort,
         host: mqttHost,
+        username: username,
+        password: password,
         key: key,
         cert: cert,
         rejectUnauthorized: true,
         ca: trustedCaList,
-        protocol: 'mqtts'
+        protocol: authType === AuthTypes.Cert ? `mqtts` : `mqtt`
     };
 
     let mqttClient;
