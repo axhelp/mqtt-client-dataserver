@@ -4,6 +4,9 @@
       "host": "mqtt.cloud.yandex.net:8883",
       "client_name": "axc-f-2152",
       "connect_options": {
+        "auth_type": "cert",
+        "username": "",
+        "password": "",
         "ssl_options": {
           "trust_store": "/opt/plcnext/projects/mqtt-client-dataserver/credentials/rootCA.crt",
           "key_store": "/opt/plcnext/projects/mqtt-client-dataserver/credentials/axc-f-2152-cert.pem",
